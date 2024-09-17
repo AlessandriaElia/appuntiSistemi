@@ -1,0 +1,3 @@
+auto mdx, incrocia i pin via software.
+connettore vga 15pin.
+db 9 porta seriale a 9 pin.
