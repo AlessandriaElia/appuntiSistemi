@@ -40,7 +40,7 @@ Configurazione router
 router usare primo ip disponibile
 server usare ultimo ip disponibile
 
-
+--- SENZA VLAN ---
 
 enable
 conf t
@@ -48,3 +48,32 @@ hostname r0
 interface fa 0/0
 no sh
 ip address 10.0.0.1 255.255.255.0
+
+
+--- SE CI SONO DELLE VLAN IN ARRIVO SUL CAVO (TRUNK OVVIAMENTE) ---
+interface fa 1/0
+no sh
+exit
+interface fa 1/0.NUMEROVLAN
+encapsulation dot1q
+ip address x.x.x.x y.y.y.y
+ip helper-address k.k.k.k  -> lo schiavo (KKKK IP SERVER)
+exit
+
+--- SERVER ---
+services -> dhcp
+
+service ON
+una rete rimane con nome serverPool sennò si bugga
+start ip address 172.16.0.100
+dal 100 al 200 ci sono 101 utenti
+impostare default gateway (ip router)
+PREMERE SAVE
+
+faccio lo stesso con rete gialla
+nome reteGialla
+gateway: 192.168.0.1
+ip start 192.168.10.100 fino a utenti 101
+
+RICORDARSI DI DARE GATEWAY AL SERVER
+RICORDARSI DI ACCENDERE PORTA PRINCIPALE
